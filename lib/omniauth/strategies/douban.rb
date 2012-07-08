@@ -3,7 +3,7 @@ require 'omniauth-oauth2'
 module OmniAuth
   module Strategies
     class DoubanOAuth2 < OmniAuth::Strategies::OAuth2
-      options :client_options, {
+      option :client_options, {
         :site          => 'https://api.douban.com',
         :authorize_url => 'https://www.douban.com/service/auth2/auth',
         :token_url     => 'https://www.douban.com/service/auth2/token'
