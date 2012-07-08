@@ -1,5 +1,4 @@
 require 'omniauth-oauth2'
-require 'multi_json'
 
 module OmniAuth
   module Strategies
@@ -38,8 +37,8 @@ module OmniAuth
         access_token.options[:mode]       = :query
         access_token.options[:param_name] = 'access_token'
         @raw_info ||= access_token.get('/people/%40me?alt=json').body
-      rescue ::Errno::ETIMEDOUT
-        raise ::Timeout::Error
+      # rescue ::Errno::ETIMEDOUT
+      #   raise ::Timeout::Error
       end
 
     end
