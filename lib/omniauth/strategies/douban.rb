@@ -16,21 +16,19 @@ module OmniAuth
       }
 
       uid do
-        raw_info['id'].split('/').last
+        raw_info['id']
       end
 
       info do
         {
-          :name        => raw_info['title'],
-          :nickname    => raw_info['uid'],
-          :signature   => raw_info['signature'],
-          :content     => raw_info['content'],
-          :location    => raw_info['location'] ? raw_info['location']['__content__'] : nil,
-          :links       => {
-            :self      => raw_info['link'].find{ |l| l['rel'] == 'self' }['href'],
-            :icon      => raw_info['link'].find{ |l| l['rel'] == 'icon' }['href'], 
-            :douban    => raw_info['link'].find{ |l| l['rel'] == 'alternate' }['href'],
-          }
+          :uid         => raw_info['uid'],
+          :name        => raw_info['name'],
+          :loc         => raw_info['loc'],
+          :avatar      => raw_info['avatar'],
+          :url         => raw_info['alt'],
+          :desc        => raw_info['desc'],
+          :status      => raw_info['status'],
+          :created     => raw_info['created']
         }
       end
 
@@ -40,7 +38,8 @@ module OmniAuth
 
       def raw_info
         access_token.options[:param_name] = 'access_token'
-        @raw_info ||= access_token.get('/people/@me').parsed['entry']
+        user_id = access_token.get('/shuo/users/@me').parsed['uid']
+        @raw_info ||= access_token.get("/v2/people/#{ user_id }").parsed
       rescue ::Timeout::Error => e
         raise e
       end
