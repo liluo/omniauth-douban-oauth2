@@ -40,7 +40,7 @@ module OmniAuth
 
       def raw_info
         access_token.options[:param_name] = 'access_token'
-        @raw_info ||= access_token.get('/people/51789002').parsed['entry']
+        @raw_info ||= access_token.get('/people/@me').parsed['entry']
       rescue ::Timeout::Error => e
         raise e
       end
