@@ -4,6 +4,7 @@ module OmniAuth
   module Strategies
     class Douban < OmniAuth::Strategies::OAuth2
       option :name, 'douban'
+
       option :client_options, {
         :site          => 'https://api.douban.com',
         :authorize_url => 'https://www.douban.com/service/auth2/auth',
@@ -15,21 +16,20 @@ module OmniAuth
       }
 
       uid do
-        raw_info['id']
+        raw_info['id'].split('/').last
       end
 
       info do
         {
+          :name        => raw_info['title'],
           :nickname    => raw_info['uid'],
-          :name        => raw_info['screen_name'],
-          :city        => raw_info['city'],
-          :location    => raw_info['location'],
-          :description => raw_info['description'],
-
-          :douban      => {
-            :url          => raw_info['url'],
-            :created_at   => raw_info['created_at'],
-            :large_avatar => raw_info['large_avatar']
+          :signature   => raw_info['signature'],
+          :content     => raw_info['content'],
+          :location    => raw_info['location'] ? raw_info['location']['__content__'] : nil,
+          :links       => {
+            :self      => raw_info['link'].find{ |l| l['rel'] == 'self' }['href'],
+            :icon      => raw_info['link'].find{ |l| l['rel'] == 'icon' }['href'], 
+            :douban    => raw_info['link'].find{ |l| l['rel'] == 'alternate' }['href'],
           }
         }
       end
@@ -40,7 +40,7 @@ module OmniAuth
 
       def raw_info
         access_token.options[:param_name] = 'access_token'
-        @raw_info ||= access_token.get('/shuo/users/@me').parsed
+        @raw_info ||= access_token.get('/people/51789002').parsed['entry']
       rescue ::Timeout::Error => e
         raise e
       end
