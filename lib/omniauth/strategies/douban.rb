@@ -38,8 +38,7 @@ module OmniAuth
 
       def raw_info
         access_token.options[:param_name] = 'access_token'
-        user_id = access_token.get('/shuo/users/@me').parsed['uid']
-        @raw_info ||= access_token.get("/v2/people/#{ user_id }").parsed
+        @raw_info ||= access_token.get("/v2/people/~me").parsed
       rescue ::Timeout::Error => e
         raise e
       end
