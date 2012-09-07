@@ -23,12 +23,12 @@ module OmniAuth
         {
           :uid         => raw_info['uid'],
           :name        => raw_info['name'],
-          :loc         => raw_info['loc'],
+          :loc_id      => raw_info['loc_id'],
+          :loc_name    => raw_info['loc_name'],
           :avatar      => raw_info['avatar'],
-          :url         => raw_info['alt'],
+          :alt         => raw_info['alt'],
           :desc        => raw_info['desc'],
-          :status      => raw_info['status'],
-          :created     => raw_info['created']
+          :created     => raw_info['created'],
         }
       end
 
@@ -38,7 +38,7 @@ module OmniAuth
 
       def raw_info
         access_token.options[:param_name] = 'access_token'
-        @raw_info ||= access_token.get("/v2/people/~me").parsed
+        @raw_info ||= access_token.get("/v2/user/~me").parsed
       rescue ::Timeout::Error => e
         raise e
       end
