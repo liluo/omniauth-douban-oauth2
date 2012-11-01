@@ -17,5 +17,5 @@ Gem::Specification.new do |gem|
   gem.version       = OmniAuth::Douban::VERSION
 
   gem.add_dependency 'omniauth', '~> 1.0'
-  gem.add_dependency 'omniauth-oauth2', '~> 1.1'
+  gem.add_dependency 'omniauth-oauth2', '~> 1.0.2'
 end
