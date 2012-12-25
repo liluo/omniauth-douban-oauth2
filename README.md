@@ -46,3 +46,44 @@ get '/auth/failure' do
 end
 
 ```
+
+## Auth Hash
+
+Here's an example *Auth Hash* available in `request.env['omniauth.auth']`:
+
+```ruby
+{
+       "provider" => "douban",
+            "uid" => "2217855",
+           "info" => {
+             "uid" => "xiaosong",
+            "name" => "小松其实还没有",
+          "loc_id" => "118371",
+        "loc_name" => "陕西西安",
+          "avatar" => "http://img3.douban.com/icon/u2217855-34.jpg",
+             "alt" => "http://www.douban.com/people/xiaosong/",
+            "desc" => "你确实知道就必须证明",
+         "created" => "2008-02-05 15:26:44"
+    },
+    "credentials" => {
+                "token" => "6516f0d........", # OAuth 2.0 access_token
+        "refresh_token" => "30c8c560..........", # OAuth 2.0 refresh_token
+           "expires_at" => 1357053699,        # when the access token expires (it always will)
+              "expires" => true               # this will always be true
+    },
+          "extra" => {
+        "raw_info" => {
+               "loc_id" => "118371",
+                 "name" => "小松其实还没有",
+              "created" => "2008-02-05 15:26:44",
+             "loc_name" => "陕西西安",
+               "avatar" => "http://img3.douban.com/icon/u2217855-34.jpg",
+            "signature" => "啊我要增肥...",
+                  "uid" => "xiaosong",
+                  "alt" => "http://www.douban.com/people/xiaosong/",
+                   "id" => "2217855",
+                 "desc" => "你确实知道就必须证明"
+        }
+    }
+}
+```
