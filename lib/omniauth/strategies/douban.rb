@@ -22,6 +22,7 @@ module OmniAuth
       info do
         {
           :name        => raw_info['name'],
+          :nickname    => raw_info['uid'],
           :location    => raw_info['loc_name'],
           :image       => raw_info['avatar'],
           :urls        => {:alt => raw_info['alt']},
