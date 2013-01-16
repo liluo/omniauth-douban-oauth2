@@ -21,14 +21,11 @@ module OmniAuth
 
       info do
         {
-          :uid         => raw_info['uid'],
           :name        => raw_info['name'],
-          :loc_id      => raw_info['loc_id'],
-          :loc_name    => raw_info['loc_name'],
-          :avatar      => raw_info['avatar'],
-          :alt         => raw_info['alt'],
-          :desc        => raw_info['desc'],
-          :created     => raw_info['created'],
+          :location    => raw_info['loc_name'],
+          :image       => raw_info['avatar'],
+          :urls        => {:alt => raw_info['alt']},
+          :description => raw_info['desc'],
         }
       end
 
