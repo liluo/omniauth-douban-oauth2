@@ -56,14 +56,12 @@ Here's an example *Auth Hash* available in `request.env['omniauth.auth']`:
        "provider" => "douban",
             "uid" => "2217855",
            "info" => {
-             "uid" => "xiaosong",
             "name" => "小松其实还没有",
-          "loc_id" => "118371",
-        "loc_name" => "陕西西安",
-          "avatar" => "http://img3.douban.com/icon/u2217855-34.jpg",
-             "alt" => "http://www.douban.com/people/xiaosong/",
-            "desc" => "你确实知道就必须证明",
-         "created" => "2008-02-05 15:26:44"
+        "nickname" => "xiaosong",
+        "location" => "陕西西安",
+           "image" => "http://img3.douban.com/icon/u2217855-34.jpg",
+            "urls" => { :alt => "http://www.douban.com/people/xiaosong/" },
+     "description" => "你确实知道就必须证明",
     },
     "credentials" => {
                 "token" => "6516f0d........", # OAuth 2.0 access_token
