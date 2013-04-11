@@ -17,7 +17,13 @@ use OmniAuth::Builder do
 end
 ```
 
-## Example with Sinatra
+## Examples
+
+#### Rails
+[Rails + Devise + Omniauth-douban-oauth2](https://github.com/vvvvae/omniauth-douban-oauth2-demo#)
+
+
+#### Sinatra
 
 ``` ruby
 require 'sinatra'
