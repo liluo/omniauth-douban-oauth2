@@ -5,9 +5,10 @@ require File.expand_path('../lib/omniauth-douban/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ['Liluo']
   gem.email         = ['i@liluo.org']
-  gem.description   = %q{OmniAuth OAuth2 strategy for Douban.}
   gem.summary       = %q{OmniAuth OAuth2 strategy for Douban.}
+  gem.description   = %q{OmniAuth OAuth2 strategy for Douban.}
   gem.homepage      = 'https://github.com/liluo/omniauth-douban-oauth2'
+  gem.license       = 'MIT'
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   gem.files         = `git ls-files`.split("\n")
