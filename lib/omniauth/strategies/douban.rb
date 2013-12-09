@@ -3,6 +3,8 @@ require 'omniauth-oauth2'
 module OmniAuth
   module Strategies
     class Douban < OmniAuth::Strategies::OAuth2
+      DEFAULT_SCOPE = 'douban_basic_common,shuo_basic_r,shuo_basic_w'
+
       option :name, 'douban'
 
       option :client_options, {
@@ -39,6 +41,12 @@ module OmniAuth
         @raw_info ||= access_token.get("/v2/user/~me").parsed
       rescue ::Timeout::Error => e
         raise e
+      end
+
+      def authorize_params
+        super.tap do |params|
+          params[:scope] = request.params['scope'] || params[:scope] || DEFAULT_SCOPE
+        end
       end
 
     end
